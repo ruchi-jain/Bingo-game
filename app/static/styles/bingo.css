@@ -1,0 +1,78 @@
+* {
+   box-sizing: border-box;
+    color: #A5B2B0;
+}
+
+.cell {
+    width: 60px;
+    height: 60px;
+    float: left;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #A5B2B0;
+    line-height: 60px;
+    color: #A5B2B0;
+    background-color: white;
+    margin: auto;
+}
+
+.last-ball-tile {
+    width: 70px;
+    height: 40px;
+    margin: 10px;
+    border-color: #0070BA;
+    color: #0070BA !important;
+    line-height: 40px;
+}
+
+.tile-selected {
+    background-color: #0070BA;
+}
+.previous-ball-label {
+    float: right;
+    margin: 10px;
+    margin-right: 20%;
+}
+
+.previous-ball-tile {
+    float: right;
+    height: 25px;
+    line-height: 25px;
+    background-color: #EEF2F5;
+    font-size: 12px;
+    width: 35px;
+    margin-top: 30px;
+}
+
+.col {
+    width: 320px;
+    float: left;
+    padding: 10px;
+    margin: 30px;
+}
+.row {
+    display: table;
+    margin: 0 auto;
+}
+
+.grid {
+  color: #EEF2F5;
+  width:50%;
+  height:50%;
+}
+
+.board {
+    background-color: #EEF2F5;
+    position: absolute;
+    width: 100%;
+}
+.header {
+  background-color: #E1E6EA;
+    width: 100%;
+    display: inline-block;
+}
+
+.last-ball {
+    float: left;
+    margin: 20px;
+}
