@@ -41,23 +41,6 @@ function randomInt (low, high) {
     return random_ball_data[j] 
 }
 
-//function checkWinner(winData) {
-//    winData.forEach(function(val){
-//        
-//    })
-//}
-
 router.route('/random_ball').get(function(req, res) {
     res.json(randomInt(1,100));
   });
-
-router.route('/bingo')
-  .post(function(req, res) {
-    checkWinner(req.data);
-    vehicle.save(function(err) {
-      if (err) {
-        res.send(err);
-      }
-      res.json({message: 'Vehicle was successfully manufactured'});
-    });
-  })
