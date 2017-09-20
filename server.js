@@ -55,6 +55,3 @@ router.route('/random_ball').get(function(req, res) {
         res.json({ "error_msg": "All numbers has been drawn. Refresh browser to start new game" , "response_code" : 0});
     }
   });
-
-
-
