@@ -2,9 +2,12 @@ var React = require('react');
 var Tile = require('Tile');
 var TicketData = require('TicketData').getTicketData;
 var Immutable = require('immutable');
+
 require('../static/styles/bingo.css'); // add `link`
 var exportedStyles = require('!!css-loader!../static/styles/bingo.css'); // just export
+
 var lastId = 0;
+
 var Grid = React.createClass({
     getInitialState() {
         return {

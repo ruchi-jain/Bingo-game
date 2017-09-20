@@ -46,6 +46,21 @@
     display: inline-block;
 }
 
+#popup {
+  background-color: #fff;
+  border-radius: 25px;
+  color: #000;
+  display: none;
+  padding: 20px;
+  min-width: 50px;
+  min-height: 30px;
+  line-height: 30px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #EEF2F5;
+  color: #0070BA
+}
+
 .col {
     width: 320px;
     float: left;

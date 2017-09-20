@@ -13,9 +13,9 @@ module.exports = {
         Tile: 'app/components/Tile.jsx',
         Grid: 'app/components/Grid.jsx',
         Header: 'app/components/Header.jsx',
-        Modal: 'app/components/Modal.jsx',
         Button: 'app/components/Button.jsx',
         TicketData: 'app/TicketData.jsx',
+        bpopup: "app/static/assets/jquery.bpopup.min.js"
     },
     extensions: ['', '.js', '.jsx']
   },

@@ -1,7 +1,7 @@
 var React = require('react');
 var Tile = require('Tile');
 var $ = require("jquery");
-//var Modal = require('Modal');
+var bpopup = require("bpopup");
 
 var previousBallArr = [];
 require('../static/styles/bingo.css'); // add `link`
@@ -16,9 +16,16 @@ var Header = React.createClass({
     request: function (_this) {
         $.get("http://localhost:3000/api/random_ball", function(result){
             if(result['response_code'] === 1) {
+                
                  _this.setState({
 				latestNumber: result.number
-                });
+                },() => {
+                     if(_this.state.latestNumber!=0){
+                    $('#popup').bPopup({
+                    autoClose: 1000 //Auto closes after 1000ms/1sec
+                    });            
+                    }
+                 });
                 previousBallArr.push(result.number);
                 _this.props.onChange(result.number, previousBallArr);
             } else if (!!result['error_msg']) {
@@ -54,10 +61,11 @@ var Header = React.createClass({
     render: function() {
         return(
         <div className={'header'} >
+                <div key={this.state.latestNumber} id='popup'>{this.state.latestNumber}</div>
                 <label className={'last-ball'}> Last Ball </label>
                 <label className={'previous-ball-label'}> Previous Ball</label> 
-                <Tile style={'cell last-ball-tile'} data={this.state.latestNumber}/>                  
-                {this.getTile()}                
+                <Tile id='drawBall' style={'cell last-ball-tile'} data={this.state.latestNumber}/>                  
+                {this.getTile()}  
         </div>
         );
     }

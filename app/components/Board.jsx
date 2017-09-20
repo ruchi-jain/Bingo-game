@@ -3,7 +3,6 @@ var Grid = require('Grid');
 var Header = require('Header');
 var Button = require('Button');
 var $ = require("jquery");
-var Modal = require("Modal");
 
 require('../static/styles/bingo.css'); // add `link`
 var exportedStyles = require('!!css-loader!../static/styles/bingo.css'); // just export
@@ -68,13 +67,10 @@ var Board = React.createClass({
     updateGridList4: function(val) {
         gridlist4.push(val);
     },
-   visible: function(val) {
-       visible = val;
-   },
     render: function() {
         return(
             <div className="board">
-                <Header onChange={this.handleChange} visible={this.visible} />
+                <Header onChange={this.handleChange} />
                 <div className={'row'}>
                     <Grid key={1} style={'col'} drawVal={this.state.changeVal} updateGridList={this.updateGridList1} previousBallArr={this.previousBallArr} />
                     <Grid key={2} style={'col'} drawVal={this.state.changeVal} updateGridList={this.updateGridList2} previousBallArr={this.previousBallArr} />     
@@ -86,7 +82,6 @@ var Board = React.createClass({
                 <div className={'row'}>
                     <Button onClick={this.onClick}> Bingo </Button>
                 </div>
-                <Modal visible={visible}><div className={'spinner_button'}></div></Modal>
             </div>
         );
     }
