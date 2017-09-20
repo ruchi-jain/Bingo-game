@@ -41,7 +41,7 @@ function randomInt (low, high) {
 router.route('/check_winner').post(function(req, res) {
     var received_val = req.body.selectedItems;
     if(random_ball_data.length > 0) {
-        if(received_val.every(r=> random_ball_data.includes(r))) {
+        if(received_val.every(r=> random_ball_data.indexOf(r) >= 0)) {
             res.json({ "success_msg": "You won the game" , "response_code" : 1});
         } 
     }
@@ -49,9 +49,10 @@ router.route('/check_winner').post(function(req, res) {
   });
 
 router.route('/random_ball').get(function(req, res) {
-    if(random_ball_data.length <= 100) {
+    if(random_ball_data.length < 100) {
         res.json({"response_code" : 1, "number": randomInt(1,100)});
     } else {
+        random_ball_data = [];
         res.json({ "error_msg": "All numbers has been drawn. Refresh browser to start new game" , "response_code" : 0});
     }
   });

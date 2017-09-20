@@ -19790,19 +19790,19 @@
 	    onClick: function onClick() {
 	        var jsonData = {};
 	        if (gridlist1.length === 25) {
-	            jsonData = { 'selectedItems': gridlist1 };
+	            jsonData = { "selectedItems": gridlist1 };
 	        } else if (gridlist2.length === 25) {
-	            jsonData = { 'selectedItems': gridlist2 };
+	            jsonData = { "selectedItems": gridlist2 };
 	        } else if (gridlist3.length === 25) {
-	            jsonData = { 'selectedItems': gridlist3 };
+	            jsonData = { "selectedItems": gridlist3 };
 	        } else if (gridlist4.length === 25) {
-	            jsonData = { 'selectedItems': gridlist4 };
+	            jsonData = { "selectedItems": gridlist4 };
 	        } else {
 	            alert("You din't cross all numbers in any of your ticket");
 	            return;
 	        }
-
-	        $.post("http://localhost:3000/api/check_winner", { jsonData: jsonData }, function (result) {
+	        jsonData = { "selectedItems": gridlist1 };
+	        $.post("http://localhost:3000/api/check_winner", jsonData, function (result) {
 	            if (result['response_code'] === 1) {
 	                alert(result['success_msg']);
 	            } else if (!!result['error_msg']) {
@@ -25539,7 +25539,7 @@
 	var $ = __webpack_require__(170);
 	//var Modal = require('Modal');
 
-	var previousBallArr = new Array(5);
+	var previousBallArr = [];
 	__webpack_require__(164); // add `link`
 	var exportedStyles = __webpack_require__(165); // just export
 
@@ -25553,9 +25553,7 @@
 	    },
 	    request: function request(_this) {
 	        $.get("http://localhost:3000/api/random_ball", function (result) {
-	            if (result['response_code'] === 1 && result.number !== undefined) {
-	                //_this.props.visible(true);
-	                //setTimeout(function() { _this.props.visible(false); }, 10000);
+	            if (result['response_code'] === 1) {
 	                _this.setState({
 	                    latestNumber: result.number
 	                });
@@ -25563,7 +25561,7 @@
 	                _this.props.onChange(result.number, previousBallArr);
 	            } else if (!!result['error_msg']) {
 	                alert('You are not winner because: ' + result['error_msg']);
-	                clearTimeout(this.latestTimer);
+	                clearTimeout(_this.latestTimer);
 	                return;
 	            } else {
 	                alert('unknown reason');
@@ -25571,19 +25569,17 @@
 	                return;
 	            }
 	        });
-	        _this.latestTimer = setTimeout(this.request.bind(this, _this), 10000);
+	        _this.latestTimer = setTimeout(this.request.bind(this, _this), 1000);
 	    },
-	    componentDidMount: function componentDidMount() {
+	    componentWillMount: function componentWillMount() {
 	        var _this = this;
 	        this.request(_this);
 	    },
 	    getTile: function getTile() {
 	        var _this = this;
 	        if (previousBallArr.length !== 0) {
-	            if (previousBallArr.length > 5) {
-	                previousBallArr.shift(); // removes the first element from an array 
-	            }
-	            return previousBallArr.map(function (option, i) {
+	            var arr = previousBallArr.slice(Math.max(previousBallArr.length - 6, 1), -1);
+	            return arr.map(function (option, i) {
 	                return React.createElement(Tile, { data: option, key: "cell-" + i, style: 'cell previous-ball-tile' });
 	            });
 	        } else return null;
