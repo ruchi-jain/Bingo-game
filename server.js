@@ -4,7 +4,6 @@ var low = 1, high = 100;
 // Create our app
 var app = express();
 var random_ball_data = [];
-var i = 0;
 
 app.use(express.static('public'));
 
@@ -30,34 +29,32 @@ router.get('/', function(req, res) {
 });
 
 function randomInt (low, high) {
-    var j = i;
-    var rand = Math.floor(Math.random() * (high - low + 1) + low);;
-    if(random_ball_data.indexOf(rand) > -1) {
-        randomInt(1, 100);
+    var rand = Math.floor(Math.random() * (high - low + 1) + low);
+    if(random_ball_data.indexOf(rand) == -1) {
+        random_ball_data.push(rand); 
     } else {
-        random_ball_data[j] = rand; 
-        i++;
+        randomInt(1, 100);
     }
-    return random_ball_data[j] 
+    return random_ball_data[random_ball_data.length-1]; 
 }
 
-//function checkWinner(winData) {
-//    winData.forEach(function(val){
-//        
-//    })
-//}
-
-router.route('/random_ball').get(function(req, res) {
-    res.json(randomInt(1,100));
+router.route('/check_winner').post(function(req, res) {
+    var received_val = req.body.selectedItems;
+    if(random_ball_data.length > 0) {
+        if(received_val.every(r=> random_ball_data.includes(r))) {
+            res.json({ "success_msg": "You won the game" , "response_code" : 1});
+        } 
+    }
+    res.json({ "error_msg": "All numbers are not crossed in any of your ticket" , "response_code" : 0}); 
   });
 
-router.route('/bingo')
-  .post(function(req, res) {
-    checkWinner(req.data);
-    vehicle.save(function(err) {
-      if (err) {
-        res.send(err);
-      }
-      res.json({message: 'Vehicle was successfully manufactured'});
-    });
-  })
+router.route('/random_ball').get(function(req, res) {
+    if(random_ball_data.length <= 100) {
+        res.json({"response_code" : 1, "number": randomInt(1,100)});
+    } else {
+        res.json({ "error_msg": "All numbers has been drawn. Refresh browser to start new game" , "response_code" : 0});
+    }
+  });
+
+
+

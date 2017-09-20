@@ -1,0 +1,15 @@
+.button {
+  min-width: 180px;
+  line-height: 40px;
+  font-size: 18px;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #999999;
+  color: #ffffff;
+  background-color: #0070BA;
+}
+
+.spinner_button {
+    background:url(../images/2.png) no-repeat;
+}

@@ -19,7 +19,7 @@
 .last-ball-tile {
     width: 70px;
     height: 40px;
-    margin: 10px;
+    margin: 20px;
     border-color: #0070BA;
     color: #0070BA !important;
     line-height: 40px;
@@ -31,7 +31,7 @@
 .previous-ball-label {
     float: right;
     margin: 10px;
-    margin-right: 20%;
+    margin-top: 45px;
 }
 
 .previous-ball-tile {
@@ -40,8 +40,10 @@
     line-height: 25px;
     background-color: #EEF2F5;
     font-size: 12px;
-    width: 35px;
-    margin-top: 30px;
+    margin-top: 40px;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    display: inline-block;
 }
 
 .col {
@@ -67,12 +69,13 @@
     width: 100%;
 }
 .header {
-  background-color: #E1E6EA;
+    background-color: #E1E6EA;
     width: 100%;
     display: inline-block;
+    height: 80px;
 }
 
 .last-ball {
     float: left;
-    margin: 20px;
+    margin: 30px;
 }

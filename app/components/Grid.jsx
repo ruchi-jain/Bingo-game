@@ -2,36 +2,27 @@ var React = require('react');
 var Tile = require('Tile');
 var TicketData = require('TicketData').getTicketData;
 var Immutable = require('immutable');
-
 require('../static/styles/bingo.css'); // add `link`
 var exportedStyles = require('!!css-loader!../static/styles/bingo.css'); // just export
-var selectedList = [];
-
+var lastId = 0;
 var Grid = React.createClass({
     getInitialState() {
         return {
             list: Immutable.List(TicketData())
         };
     },
+    sendItem: function(item) {
+        this.props.updateGridList(item);
+    },
     getTile: function() {
         var _this = this;
-        //var data = TicketData();
-        //console.log(data);
-        return (this.state.list.map(function(option, i) {                 
-                if(_this.props.drawVal && _this.props.drawVal === option) {
-                   selectedList.push(option);
-                    console.log(selectedList);
-                   return <Tile data={option} key={"cell-" + i} style={'cell tile-selected'}/> 
-                } else if (selectedList.indexOf(option) !== -1) {
-                    return <Tile data={option} key={"cell-" + i} style={'cell tile-selected'}/> 
-                } else {
-                   return <Tile data={option} key={i} style={'cell'}/> 
-                } 
+        return (this.state.list.map(function(option, i) {              
+                   return <Tile data={option} key={option + "-" + i} style={'cell'} drawVal={_this.props.drawVal} previousBallArr={_this.props.previousBallArr} callbackSelectedList={_this.sendItem}/>                 
         }
             ))},
     render: function() {
         return(
-            <div className={this.props.style}> 
+            <div key={this.props.key} className={this.props.style}> 
                 {this.getTile()}
             </div>
         );

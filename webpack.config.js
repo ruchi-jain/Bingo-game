@@ -13,8 +13,9 @@ module.exports = {
         Tile: 'app/components/Tile.jsx',
         Grid: 'app/components/Grid.jsx',
         Header: 'app/components/Header.jsx',
+        Modal: 'app/components/Modal.jsx',
+        Button: 'app/components/Button.jsx',
         TicketData: 'app/TicketData.jsx',
-        
     },
     extensions: ['', '.js', '.jsx']
   },
@@ -31,6 +32,9 @@ module.exports = {
       {
         test: /\.css/, 
         loaders: ['style', 'css']
+      },
+      { test: /\.png$/, 
+        loader: "url-loader?mimetype=image/png" 
       }
     ]
   },

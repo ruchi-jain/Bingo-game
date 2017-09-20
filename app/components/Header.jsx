@@ -1,8 +1,9 @@
 var React = require('react');
 var Tile = require('Tile');
 var $ = require("jquery");
+//var Modal = require('Modal');
 
-var previousNum = new Array(5);
+var previousBallArr = new Array(5);
 require('../static/styles/bingo.css'); // add `link`
 var exportedStyles = require('!!css-loader!../static/styles/bingo.css'); // just export
 
@@ -13,13 +14,23 @@ var Header = React.createClass({
 		}
 	},
     request: function (_this) {
-        $.get("http://localhost:3000/api/random_ball", function(data){
-            if(data !== undefined) {
+        $.get("http://localhost:3000/api/random_ball", function(result){
+            if(result['response_code'] === 1 && result.number !== undefined) {
+                 //_this.props.visible(true);
+                 //setTimeout(function() { _this.props.visible(false); }, 10000);
                  _this.setState({
-				latestNumber: data
-        });
-                previousNum.push(data);
-                _this.props.onChange(data);
+				latestNumber: result.number
+                });
+                previousBallArr.push(result.number);
+                _this.props.onChange(result.number, previousBallArr);
+            } else if (!!result['error_msg']) {
+                alert('You are not winner because: ' + result['error_msg']);
+                clearTimeout(this.latestTimer);
+                return;
+            } else {
+                alert('unknown reason');
+                clearTimeout(this.latestTimer);
+                return;
             }
         });
         _this.latestTimer = setTimeout(this.request.bind(this,_this), 10000);
@@ -30,11 +41,11 @@ var Header = React.createClass({
     },
     getTile: function() {
         var _this = this;
-        if(previousNum.length !== 0){
-            if (previousNum.length > 5) {
-               previousNum.shift(); // removes the first element from an array 
+        if(previousBallArr.length !== 0){
+            if (previousBallArr.length > 5) {
+               previousBallArr.shift(); // removes the first element from an array 
              }
-        return (previousNum.map(function(option, i) {                                 
+        return (previousBallArr.map(function(option, i) {                                 
             return <Tile data={option} key={"cell-" + i} style={'cell previous-ball-tile'}/> 
                
         })
@@ -48,10 +59,9 @@ var Header = React.createClass({
         return(
         <div className={'header'} >
                 <label className={'last-ball'}> Last Ball </label>
-                <Tile style={'cell last-ball-tile'} data={this.state.latestNumber}/>
-                <label className={'previous-ball-label'}> Previous Ball</label>   
-                {this.getTile()}
-                
+                <label className={'previous-ball-label'}> Previous Ball</label> 
+                <Tile style={'cell last-ball-tile'} data={this.state.latestNumber}/>                  
+                {this.getTile()}                
         </div>
         );
     }
