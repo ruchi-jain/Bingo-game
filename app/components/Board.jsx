@@ -42,7 +42,7 @@ var Board = React.createClass({
             return;
         }
    jsonData = {"selectedItems": gridlist1};
-          $.post("http://localhost:3000/api/check_winner", jsonData,
+          $.post("http://localhost:3000/api/check_winner", JSON.stringify(jsonData),
                  function(result) {
             if(result['response_code'] === 1){
                 alert(result['success_msg']);
