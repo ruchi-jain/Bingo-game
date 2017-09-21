@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f436435-684b-4ba7-9617-5f91cb8791e5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/Board.jsx" afterPath="$PROJECT_DIR$/app/components/Board.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/Header.jsx" afterPath="$PROJECT_DIR$/app/components/Header.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/bundle.js" afterPath="$PROJECT_DIR$/public/bundle.js" />
     </list>
     <ignored path="Bingo-game-master.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -332,12 +330,12 @@
       <option name="presentableId" value="Default" />
       <updated>1505960889328</updated>
       <workItem from="1505960890459" duration="1502000" />
-      <workItem from="1505964142339" duration="1192000" />
+      <workItem from="1505964142339" duration="1268000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2694000" />
+    <option name="totallyTimeSpent" value="2770000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="810" extended-state="6" />

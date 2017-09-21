@@ -13,10 +13,10 @@ var Header = React.createClass({
 		}
 	},
     request: function (_this) {
-                var ip = process.env.HOST || 'http://localhost:3000/';
+        var ip = process.env.HOST || 'http://localhost:3000/';
         var randomBallApi = ip + "api/random_ball"
-        console.log("randomBallApi" + randomBallApi);
-
+        console.log("randomBallApi: " + randomBallApi);
+        console.log("process.env.PORT: " + process.env.PORT);
         
         $.get(randomBallApi, function(result){
             if(result['response_code'] === 1) {
