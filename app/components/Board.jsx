@@ -41,8 +41,7 @@ var Board = React.createClass({
             alert("You din't cross all numbers in any of your ticket");
             return;
         }
-   jsonData = {"selectedItems": gridlist1};
-          $.post("http://localhost:3000/api/check_winner", JSON.stringify(jsonData),
+          $.post("http://localhost:3000/api/check_winner", {data:JSON.stringify(jsonData)},
                  function(result) {
             if(result['response_code'] === 1){
                 alert(result['success_msg']);

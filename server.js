@@ -38,17 +38,19 @@ function randomInt (low, high) {
     return random_ball_data[random_ball_data.length-1]; 
 }
 
-router.route('/check_winner').post(function(req, res) {
-    var received_val = req.body.selectedItems;
-    if(random_ball_data.length > 0) {
-        if(received_val.length === 0) {
-            res.json({ "error_msg": "All numbers are not crossed in any of your ticket" , "response_code" : 0}); 
+router.route('/check_winner').post(function(req, res) {        
+    var received_val = JSON.parse(req.body.data);
+    if(random_ball_data.length > 0 && received_val.selectedItems.length > 0) {
+        if(received_val.selectedItems.every(r=> random_ball_data.indexOf(r) >= 0)) {
+            res.json({ "success_msg": "You won the game. Bingo!! Click OK to start new game" , "response_code" : 1});
+             random_ball_data = [];
+        } else {
+            res.json({ "error_msg": "All numbers are not crossed in any of your ticket" , "response_code" : 0});  
         }
-        if(received_val.every(r=> random_ball_data.indexOf(r) >= 0)) {
-            res.json({ "success_msg": "You won the game" , "response_code" : 1});
-        } 
+    } else {
+        res.json({ "error_msg": "All numbers are not crossed in any of your ticket" , "response_code" : 0});  
     }
-    res.json({ "error_msg": "All numbers are not crossed in any of your ticket" , "response_code" : 0}); 
+    
   });
 
 router.route('/random_ball').get(function(req, res) {
@@ -58,6 +60,11 @@ router.route('/random_ball').get(function(req, res) {
         random_ball_data = [];
         res.json({ "error_msg": "All numbers has been drawn. Refresh browser to start new game" , "response_code" : 0});
     }
+  });
+
+router.route('/server_balls').delete(function(req, res) {
+    random_ball_data = [];
+    res.json({ "response_code" : 1});
   });
 
 router.route('/all').get(function(req, res) {  

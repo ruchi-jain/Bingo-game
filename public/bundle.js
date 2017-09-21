@@ -19789,11 +19789,8 @@
 	    },
 	    onClick: function onClick() {
 	        var jsonData = {};
-
+	        //   if(gridlist1.length === 25) {
 	        jsonData = { "selectedItems": gridlist1 };
-	        console.log(jsonData);
-	        //        if(gridlist1.length === 25) {
-	        //            jsonData = {"selectedItems": gridlist1};
 	        //        } else if(gridlist2.length === 25) {
 	        //            jsonData = {"selectedItems": gridlist2};
 	        //        } else if(gridlist3.length === 25) {
@@ -19804,10 +19801,17 @@
 	        //            alert("You din't cross all numbers in any of your ticket");
 	        //            return;
 	        //        }
-	        jsonData = { "selectedItems": gridlist1 };
-	        $.post("http://localhost:3000/api/check_winner", jsonData, function (result) {
+	        $.post("http://localhost:3000/api/check_winner", { data: JSON.stringify(jsonData) }, function (result) {
 	            if (result['response_code'] === 1) {
 	                alert(result['success_msg']);
+	                window.location.reload();
+	                window.onbeforeunload = function () {
+	                    $.delete("http://localhost:3000/api/server_balls", function (result) {
+	                        if (result['response_code'] === 1) {
+	                            alert('Game restarted');
+	                        }
+	                    });
+	                };
 	            } else if (!!result['error_msg']) {
 	                alert('You are not winner because: ' + result['error_msg']);
 	            } else {
@@ -25588,7 +25592,7 @@
 	                return;
 	            }
 	        });
-	        _this.latestTimer = setTimeout(this.request.bind(this, _this), 5000);
+	        _this.latestTimer = setTimeout(this.request.bind(this, _this), 10000);
 	    },
 	    componentWillMount: function componentWillMount() {
 	        var _this = this;
