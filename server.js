@@ -14,7 +14,12 @@ app.use(bodyParser.json());
 
 // Set up port for server to listen on
 app.listen(process.env.PORT || 3000, function () {
-  console.log('Express server is up on port 3000');
+  console.log('Express server is up on port ' + process.env.PORT || 3000);
+    
+    var ip = process.env.HOST || 'http://localhost:3000/';
+    var randomBallApi = ip + "api/random_ball";
+    console.log("invoking randomBallApi");
+    console.log("randomBallApi: " + randomBallApi);
 });
 
 // API Routes

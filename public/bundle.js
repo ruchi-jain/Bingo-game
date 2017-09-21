@@ -25572,10 +25572,14 @@
 	    request: function request(_this) {
 	        var ip = process.env.HOST || 'http://localhost:3000/';
 	        var randomBallApi = ip + "api/random_ball";
+	        console.log("invoking randomBallApi");
 	        console.log("randomBallApi: " + randomBallApi);
 	        console.log("process.env.PORT: " + process.env.PORT);
 
 	        $.get(randomBallApi, function (result) {
+	            console.log("result: " + result);
+	            console.log(result);
+
 	            if (result['response_code'] === 1) {
 	                _this.setState({
 	                    latestNumber: result.number
