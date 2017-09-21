@@ -25,11 +25,8 @@
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
-<<<<<<< HEAD
     "css-loader": "^0.28.7",
     "style-loader": "^0.18.2",
-=======
->>>>>>> origin/master
     "webpack": "^1.12.13"
   }
 }

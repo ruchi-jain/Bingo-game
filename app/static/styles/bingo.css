@@ -46,30 +46,17 @@
     display: inline-block;
 }
 
-<<<<<<< HEAD
 .popup {
   background-color: #fff;
   border-radius: 30px;
   color: #000;
-=======
-#popup {
-  background-color: #fff;
-  border-radius: 25px;
-  color: #000;
-  display: none;
->>>>>>> origin/master
   padding: 20px;
   min-width: 50px;
   min-height: 30px;
   line-height: 30px;
   margin: 0 auto;
   text-align: center;
-<<<<<<< HEAD
   background-color: #0070BA
-=======
-  background-color: #EEF2F5;
-  color: #0070BA
->>>>>>> origin/master
 }
 
 .col {
