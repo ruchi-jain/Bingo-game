@@ -41,7 +41,11 @@ var Board = React.createClass({
             alert("You din't cross all numbers in any of your ticket");
             return;
         }
-          $.post("http://localhost:3000/api/check_winner", {data:JSON.stringify(jsonData)},
+        var ip = process.env.HOST || 'http://localhost:3000/';
+        var checkWinnerApi = ip + "api/check_winner"
+
+//          $.post("http://localhost:3000/api/check_winner", {data:JSON.stringify(jsonData)},
+          $.post(checkWinnerApi, {data:JSON.stringify(jsonData)},
                  function(result) {
             if(result['response_code'] === 1){
                 alert(result['success_msg']);
