@@ -3,7 +3,10 @@ var Grid = require('Grid');
 var Header = require('Header');
 var Button = require('Button');
 var $ = require("jquery");
+<<<<<<< HEAD
 var Modal = require('Modal');
+=======
+>>>>>>> origin/master
 
 require('../static/styles/bingo.css'); // add `link`
 var exportedStyles = require('!!css-loader!../static/styles/bingo.css'); // just export
@@ -21,7 +24,10 @@ var Board = React.createClass({
     getInitialState: function() {
 		return {
             changeVal: 0,
+<<<<<<< HEAD
             showModal: false
+=======
+>>>>>>> origin/master
         };
     },
     handleChange: function(val, previousBallArr) {
@@ -69,6 +75,7 @@ var Board = React.createClass({
     updateGridList4: function(val) {
         gridlist4.push(val);
     },
+<<<<<<< HEAD
     showAction: function() {
         var _this= this;
         this.setState({
@@ -85,6 +92,12 @@ var Board = React.createClass({
         return(
             <div className="board">
                 <Header onChange={this.handleChange} showAction={this.showAction} />
+=======
+    render: function() {
+        return(
+            <div className="board">
+                <Header onChange={this.handleChange} />
+>>>>>>> origin/master
                 <div className={'row'}>
                     <Grid key={1} style={'col'} drawVal={this.state.changeVal} updateGridList={this.updateGridList1} previousBallArr={this.previousBallArr} />
                     <Grid key={2} style={'col'} drawVal={this.state.changeVal} updateGridList={this.updateGridList2} previousBallArr={this.previousBallArr} />     
@@ -96,8 +109,11 @@ var Board = React.createClass({
                 <div className={'row'}>
                     <Button onClick={this.onClick}> Bingo </Button>
                 </div>
+<<<<<<< HEAD
                 <Modal visible={this.state.showModal}>
                     <div className='popup'>{this.state.changeVal}</div></Modal>
+=======
+>>>>>>> origin/master
             </div>
         );
     }
