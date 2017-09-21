@@ -43,7 +43,7 @@ var Board = React.createClass({
         }
         var ip = process.env.HOST || 'http://localhost:3000/';
         var checkWinnerApi = ip + "api/check_winner"
-
+        console.log("checkWinnerApi" + checkWinnerApi);
 //          $.post("http://localhost:3000/api/check_winner", {data:JSON.stringify(jsonData)},
           $.post(checkWinnerApi, {data:JSON.stringify(jsonData)},
                  function(result) {

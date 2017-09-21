@@ -13,7 +13,12 @@ var Header = React.createClass({
 		}
 	},
     request: function (_this) {
-        $.get("http://localhost:3000/api/random_ball", function(result){
+                var ip = process.env.HOST || 'http://localhost:3000/';
+        var randomBallApi = ip + "api/random_ball"
+        console.log("randomBallApi" + randomBallApi);
+
+        
+        $.get(randomBallApi, function(result){
             if(result['response_code'] === 1) {
                  _this.setState({
 				latestNumber: result.number

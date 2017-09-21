@@ -19754,7 +19754,7 @@
 /* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	var React = __webpack_require__(1);
 	var Grid = __webpack_require__(160);
@@ -19789,29 +19789,25 @@
 	    },
 	    onClick: function onClick() {
 	        var jsonData = {};
-	        //   if(gridlist1.length === 25) {
-	        jsonData = { "selectedItems": gridlist1 };
-	        //        } else if(gridlist2.length === 25) {
-	        //            jsonData = {"selectedItems": gridlist2};
-	        //        } else if(gridlist3.length === 25) {
-	        //            jsonData = {"selectedItems": gridlist3};
-	        //        } else if(gridlist4.length === 25) {
-	        //            jsonData = {"selectedItems": gridlist4};
-	        //        } else{
-	        //            alert("You din't cross all numbers in any of your ticket");
-	        //            return;
-	        //        }
-	        $.post("http://localhost:3000/api/check_winner", { data: JSON.stringify(jsonData) }, function (result) {
+	        if (gridlist1.length === 25) {
+	            jsonData = { "selectedItems": gridlist1 };
+	        } else if (gridlist2.length === 25) {
+	            jsonData = { "selectedItems": gridlist2 };
+	        } else if (gridlist3.length === 25) {
+	            jsonData = { "selectedItems": gridlist3 };
+	        } else if (gridlist4.length === 25) {
+	            jsonData = { "selectedItems": gridlist4 };
+	        } else {
+	            alert("You din't cross all numbers in any of your ticket");
+	            return;
+	        }
+	        var ip = process.env.HOST || 'http://localhost:3000/';
+	        var checkWinnerApi = ip + "api/check_winner";
+	        console.log("checkWinnerApi" + checkWinnerApi);
+	        //          $.post("http://localhost:3000/api/check_winner", {data:JSON.stringify(jsonData)},
+	        $.post(checkWinnerApi, { data: JSON.stringify(jsonData) }, function (result) {
 	            if (result['response_code'] === 1) {
 	                alert(result['success_msg']);
-	                window.location.reload();
-	                window.onbeforeunload = function () {
-	                    $.delete("http://localhost:3000/api/server_balls", function (result) {
-	                        if (result['response_code'] === 1) {
-	                            alert('Game restarted');
-	                        }
-	                    });
-	                };
 	            } else if (!!result['error_msg']) {
 	                alert('You are not winner because: ' + result['error_msg']);
 	            } else {
@@ -19882,6 +19878,7 @@
 	});
 
 	module.exports = Board;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 /* 160 */
@@ -25554,7 +25551,7 @@
 /* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	var React = __webpack_require__(1);
 	var Tile = __webpack_require__(161);
@@ -25573,7 +25570,11 @@
 	        };
 	    },
 	    request: function request(_this) {
-	        $.get("http://localhost:3000/api/random_ball", function (result) {
+	        var ip = process.env.HOST || 'http://localhost:3000/';
+	        var randomBallApi = ip + "api/random_ball";
+	        console.log("randomBallApi" + randomBallApi);
+
+	        $.get(randomBallApi, function (result) {
 	            if (result['response_code'] === 1) {
 	                _this.setState({
 	                    latestNumber: result.number
@@ -25631,6 +25632,7 @@
 	});
 
 	module.exports = Header;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 /* 170 */
