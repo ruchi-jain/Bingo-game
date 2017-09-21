@@ -14,7 +14,8 @@ var Header = React.createClass({
 	},
     request: function (_this) {
         var ip = process.env.HOST || 'http://localhost:3000/';
-        var randomBallApi = ip + "api/random_ball"
+        var randomBallApi = ip + "api/random_ball";
+        console.log("invoking randomBallApi");
         console.log("randomBallApi: " + randomBallApi);
         console.log("process.env.PORT: " + process.env.PORT);
         
